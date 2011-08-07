@@ -4,8 +4,8 @@
 	<artifactId>BuildPipelineTest</artifactId>
 	<version>0.0.1</version>
 	<scm>
-		<url>scm:git:file://localhost/Users/guido/git/BuildPipelineRepo/.git</url>
-		<developerConnection>scm:git:file://localhost/Users/guido/git/BuildPipelineRepo/.git</developerConnection>
+		<url>scm:git:/Users/guido/wrk/BuildPipelineTest</url>
+		<developerConnection>scm:git:/Users/guido/wrk/BuildPipelineTest</developerConnection>
 	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
