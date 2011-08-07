@@ -1,9 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<name>BuildPipelineTest</name>
 	<groupId>de.gzockoll.test</groupId>
 	<artifactId>BuildPipelineTest</artifactId>
 	<version>0.1.3-SNAPSHOT</version>
+	<packaging>war</packaging>
+
 	<scm>
 		<url>scm:git:/Users/guido/wrk/BuildPipelineTest</url>
 		<developerConnection>scm:git:/Users/guido/wrk/BuildPipelineTest</developerConnection>
@@ -22,8 +25,22 @@
 	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<testdir>src/test/java</testdir>
 	</properties>
+	<profiles>
+		<profile>
+			<id>integration-test</id>
+			<properties>
+				<testdir>src/integration/java</testdir>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencies>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -32,6 +49,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<testSourceDirectory>${testdir}</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -40,6 +58,21 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8088</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath>/</contextPath>
+					</webAppConfig>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -24,27 +24,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import static org.hamcrest.core.Is.*;
 
-public class KontoTest {
+public class KontoIntegrationTest {
 
 	@Test
-	public void testConstructor() {
+	public void test() {
 		Konto k = new Konto();
-		assertThat(k.getSaldo(),is(0));
-	}
-	
-	@Test
-	public void buche_should_work_for_positive_values() {
-		Konto k = new Konto();
-		assertThat(k.getSaldo(),is(0));
-		k.buche(10);
-		assertThat(k.getSaldo(),is(10));
-	}
-
-	@Test(expected=IllegalArgumentException.class)
-	public void buche_should_throw_exception_for_negative_values() {
-		Konto k = new Konto();
-		assertThat(k.getSaldo(),is(0));
-		k.buche(-10);
+		assertThat(k.getSaldo(),is(1));
 	}
 
 }
