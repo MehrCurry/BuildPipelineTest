@@ -16,7 +16,7 @@
 			<uniqueVersion>false</uniqueVersion>
 		</repository>
 		<snapshotRepository>
-			<id>central</id>
+			<id>snapshots</id>
 			<name>libs-snapshot-local</name>
 			<url>http://localhost:8080/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
