@@ -1,26 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.gzockoll.test</groupId>
 	<artifactId>BuildPipelineTest</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<scm>
 		<url>scm:git:/Users/guido/wrk/BuildPipelineTest</url>
 		<developerConnection>scm:git:/Users/guido/wrk/BuildPipelineTest</developerConnection>
 	</scm>
-	<distributionManagement>
-		<repository>
-			<id>central</id>
-			<name>libs-releases-local</name>
-			<url>http://localhost:8080/artifactory/libs-release-local</url>
-			<uniqueVersion>false</uniqueVersion>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>libs-snapshot-local</name>
-			<url>http://localhost:8080/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
