@@ -16,8 +16,18 @@
 		<developerConnection>scm:git:git@github.com:MehrCurry/${project.artifactId}.git</developerConnection>
 		<url>https://github.com/MehrCurry/${project.artifactId}</url>
 	</scm>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>2.3.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -29,24 +39,27 @@
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
-		<testSourceDirectory>${testdir}</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.10</version>
 				<configuration>
-					<contextPath>/</contextPath>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
-					<stopPort>9966</stopPort>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopKey>foo</stopKey>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>9080</port>
-							<maxIdleTime>60000</maxIdleTime>
-						</connector>
-					</connectors>
+					<stopPort>9999</stopPort>
 				</configuration>
 				<executions>
 					<execution>
@@ -56,6 +69,7 @@
 							<goal>run</goal>
 						</goals>
 						<configuration>
+							<scanIntervalSeconds>0</scanIntervalSeconds>
 							<daemon>true</daemon>
 						</configuration>
 					</execution>
@@ -68,38 +82,18 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>selenium-maven-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<id>start</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start-server</goal>
-						</goals>
-						<configuration>
-							<background>true</background>
-							<logOutput>true</logOutput>
-							<multiWindow>true</multiWindow>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop-server</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>selenium-maven-plugin</artifactId> 
+				<version>2.0</version> <executions> <execution> <id>start</id> <phase>pre-integration-test</phase> 
+				<goals> <goal>start-server</goal> </goals> <configuration> <background>true</background> 
+				<logOutput>true</logOutput> <multiWindow>true</multiWindow> </configuration> 
+				</execution> <execution> <id>stop</id> <phase>post-integration-test</phase> 
+				<goals> <goal>stop-server</goal> </goals> </execution> </executions> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<excludes>
-						<exclude>**/integration/*Test.java
+						<exclude>**/*IntegrationTest.java
 						</exclude>
 					</excludes>
 				</configuration>
@@ -116,7 +110,7 @@
 								<exclude>none</exclude>
 							</excludes>
 							<includes>
-								<include>**/integration/*Test.java
+								<include>**/*IntegrationTest.java
 								</include>
 							</includes>
 						</configuration>
