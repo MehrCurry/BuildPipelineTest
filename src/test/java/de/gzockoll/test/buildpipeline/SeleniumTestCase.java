@@ -1,18 +1,18 @@
 package de.gzockoll.test.buildpipeline;
 
-import junit.framework.TestCase;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
 
-public abstract class SeleniumTestCase extends TestCase {
+public abstract class SeleniumTestCase {
 	 
 	private static final int SELENIUM_PORT = 4444;
-	protected Selenium selenium;
+	protected static Selenium selenium;
  
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@BeforeClass
+	public static void setUp() throws Exception {
         selenium = new DefaultSelenium(
         		"localhost", 
         		SELENIUM_PORT, 
@@ -21,9 +21,8 @@ public abstract class SeleniumTestCase extends TestCase {
         selenium.start();
 	}
  
-    @Override
-    protected void tearDown() throws Exception {
+    @AfterClass
+    public static void tearDown() throws Exception {
     	selenium.stop();
-    	super.tearDown();
     }
 }
