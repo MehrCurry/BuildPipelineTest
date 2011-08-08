@@ -16,6 +16,19 @@
 		<developerConnection>scm:git:git@github.com:MehrCurry/${project.artifactId}.git</developerConnection>
 		<url>https://github.com/MehrCurry/${project.artifactId}</url>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>local-releases</name>
+			<url>http://localhost:8081/artifactory/libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>local-snapshots</name>
+			<url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -51,7 +64,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<plugins> 
+		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
